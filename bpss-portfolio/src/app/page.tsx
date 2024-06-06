@@ -1,27 +1,38 @@
+import { FlipWords } from "@/components/ui/flip-words";
 import { TracingBeam } from "@/components/ui/tracing-beam";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import { WavyBackground } from "@/components/ui/wavy-background";
 import Image from "next/image";
 
 export default function Home() {
+  const words = ["Engineer", "Developer", "Coder", "Cypherpunk"];
   return (
     <>
-      
-        <div className="relative h-[40rem] overflow-hidden flex items-center justify-center">
-          <WavyBackground className="max-w-4xl mx-auto pb-40">
-            <p className="text-2xl md:text-4xl lg:text-7xl text-white font-bold inter-var text-center">
-              Hi I'am Bhanu Pratap
+
+      <div className="relative h-[55rem] md:h-[42rem] overflow-hidden flex items-center justify-center">
+        <WavyBackground className="max-w-4xl center mx-auto pb-40">
+
+          <p className="text-3xl md:text-4xl lg:text-7xl text-white font-bold inter-var text-center">
+            Hi I'Am Bhanu Pratap
+          </p>
+
+          <div className="text-[20px] md:text-[20px] lg:text-3xl mt-4 text-white font-normal inter-var text-center" >
+            <p >
+              Aspriring Full Stack Software
             </p>
-            <p className="text-base md:text-lg mt-4 text-white font-normal inter-var text-center">
-              Aspriring Full Stack Software Dev
-            </p>
-          </WavyBackground>
-          
+            <FlipWords words={words} />
+          </div>
+
+
+        </WavyBackground>
+
+
+      </div>
+      <TracingBeam>
+        <div>
+
         </div>
-        <TracingBeam>
-            <div>
-              
-            </div>
-          </TracingBeam>
+      </TracingBeam>
     </>
   );
 }
