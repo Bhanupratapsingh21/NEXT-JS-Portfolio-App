@@ -4,6 +4,8 @@ import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import { WavyBackground } from "@/components/ui/wavy-background";
 import Image from "next/image";
 
+import Projecthome from "../components/project";
+
 export default function Home() {
   const words = ["Engineer", "Developer", "Coder", "Cypherpunk"];
   return (
@@ -28,9 +30,9 @@ export default function Home() {
 
 
       </div>
-      <TracingBeam>
+      <TracingBeam className="none" >
         <div>
-
+            <Projecthome/>
         </div>
       </TracingBeam>
     </>
