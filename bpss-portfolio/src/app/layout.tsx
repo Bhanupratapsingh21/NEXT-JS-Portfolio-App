@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header"
 import { TracingBeam } from "@/components/ui/tracing-beam";
+import Fotter from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +25,9 @@ export default function RootLayout({
         </div>
         
           {children}
-        
+        <div>
+          <Fotter/>
+        </div>
 
 
       </body>
