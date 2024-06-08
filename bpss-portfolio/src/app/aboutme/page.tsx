@@ -52,7 +52,7 @@ function Aboutme() {
                         <div className="grid md:grid-cols-3 grid-cols-3 gap-4 ">
                             {
                                 data.map((name) => (
-                                    <button className="shadow-[0_0_0_3px_#000000_inset] md:px-6 py-2 bg-transparent border border-gray-500  text-white rounded-lg font-bold transform hover:-translate-y-1 text-center overflow-hidden transition duration-400">
+                                    <button key={name} className="shadow-[0_0_0_3px_#000000_inset] md:px-6 py-2 bg-transparent border border-gray-500  text-white rounded-lg font-bold transform hover:-translate-y-1 text-center overflow-hidden transition duration-400">
                                         {name}
                                     </button>
                                 ))
@@ -64,7 +64,7 @@ function Aboutme() {
                         <div className="grid md:grid-cols-3 grid-cols-3 gap-4 ">
                             {
                                 tools.map((name) => (
-                                    <button className=" overflow-hidden shadow-[0_0_0_3px_#000000_inset] md:px-6 py-2 bg-transparent border border-gray-500  text-white rounded-lg font-bold transform hover:-translate-y-1 text-center transition duration-400">
+                                    <button key={name} className=" overflow-hidden shadow-[0_0_0_3px_#000000_inset] md:px-6 py-2 bg-transparent border border-gray-500  text-white rounded-lg font-bold transform hover:-translate-y-1 text-center transition duration-400">
                                         {name}
                                     </button>
                                 ))
