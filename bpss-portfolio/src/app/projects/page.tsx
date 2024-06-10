@@ -20,8 +20,8 @@ function Project() {
             </div>
             <div>
                 <div>
-                    <h1 className="text-3xl text-center md:text-left mt-16 mb-6 md:text-5xl">Some More Basic Projects</h1>
-                    <p className="mt-4 text-left  text-base/6 text-neutral-200">
+                    <h1 className="text-3xl md:mx-0 mx-4 text-left mt-16 mb-6 md:text-5xl">Some More Basic Projects</h1>
+                    <p className="mt-4 text-left md:mx-0  mx-4 text-base/6 text-neutral-200">
                         Some Basic Or The Project i have Created For Learning And Some Fun...
                     </p>
                 </div>

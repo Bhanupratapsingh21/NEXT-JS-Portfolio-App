@@ -31,7 +31,7 @@ export default function Home() {
 
       </div>
       <TracingBeam className="none" >
-        <div>
+        <div className="-mt-56">
             <Projecthome/>
         </div>
       </TracingBeam>

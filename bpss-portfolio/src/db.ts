@@ -90,12 +90,11 @@ const AllProjectsdata: Data[] = [
     description: "This application, meticulously crafted with HTML, CSS, and JavaScript, showcases my proficiency in front-end development and API integration, along with advanced techniques such as debouncing and throttling for enhanced user experience.",
     techstack: "HTML CSS JS",
     images: [
-      { name: "https://ui.aceternity.com/_next/image?url=%2Flinear.webp&w=640&q=75" },
-      { name: "https://ui.aceternity.com/_next/image?url=%2Flinear.webp&w=640&q=75" },
-      { name: "https://ui.aceternity.com/_next/image?url=%2Flinear.webp&w=640&q=75" },
-      { name: "https://ui.aceternity.com/_next/image?url=%2Flinear.webp&w=640&q=75" },
+      { name: "https://res.cloudinary.com/djwzwq4cu/image/upload/v1718017191/u1cdawvie5cx6czb4bae.png" },
+      { name: "https://res.cloudinary.com/djwzwq4cu/image/upload/v1718017190/wx1xane3r4dfuj1sseia.png" },
+      { name: "https://res.cloudinary.com/djwzwq4cu/image/upload/v1718017195/eoypzgtnkmrugopudubg.png" }
     ],
-    link: "https.dwaa",
+    link: "https://github.com/Bhanupratapsingh21/FIND-YOUR-Movie-Api-Usage-",
     livelink: 'https://bhanupratapsingh21.github.io/FIND-YOUR-Movie-Api-Usage-/'
   }
   // Add more projects here...
