@@ -92,7 +92,7 @@ function Aboutme() {
                                 CAP | Full Stack Development | 2023-2024
                             </p>
                         </div>
-                        <div className="mb-6">
+                        <div className="">
                             <h1 className=" mb-4 text-left text-2xl md:text-3xl">Bachelor Degree | UG</h1>
                             <p className="mt-4 text-left  text-base/6 text-neutral-200">
                                 Sanatan Dharma Government Collage, Beawar | B-Com | 2023-2026
