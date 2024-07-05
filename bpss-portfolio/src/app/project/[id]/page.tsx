@@ -18,7 +18,14 @@ interface Data {
 const Project = () => {
 
   const params = useParams();
-  const id = Number(params.id);
+  const [id,setid] = useState<number>(Number(params.id))
+  if(id >= db.length+1){
+    return (
+      <div className='text-center px-56 py-56'>
+      404 | Not Found  
+      </div>
+    )
+  }
   const [data, setData] = useState<Data>(db[id-1]);
   const testimonials = data.images.map(image => ({
     quote: data.name,
@@ -48,7 +55,7 @@ const Project = () => {
         </div>
       </div>
 
-      <div  onClick={()=> window.location.href = data.link }>
+      <div  onClick={()=> window.location.href = data.livelink }>
         <InfiniteMovingCards
           
           items={testimonials}

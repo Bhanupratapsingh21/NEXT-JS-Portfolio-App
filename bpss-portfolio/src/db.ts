@@ -14,7 +14,7 @@ const AllProjectsdata: Data[] = [
     id: 1,
     name: "URL Shortner & Analytics",
     description: "Our new URL Shortener App, built with the MERN stack, offers a seamless way to manage and track your links. It features secure user authentication using JWT tokens and bcrypt, allowing users to sign up and log in safely. The app simplifies link sharing by converting long URLs into short, manageable ones, and provides detailed analytics to track link performance, including request counts, IP addresses, and device information. Utilizing Node.js, Express, React.js, Redux, and Mongoose, this app combines modern technology with robust functionality for both personal and professional use.",
-    techstack: "MERN React JS Node JS Express Mongoose MongoDB JWT Tokens Bcrypt etc..",
+    techstack: "MERN : React JS, Node JS, Express, Mongoose, MongoDB, JWT Tokens, Bcrypt, etc..",
     images: [
       { name: "https://res.cloudinary.com/djwzwq4cu/image/upload/v1717857825/sizolaeougobiukphkzk.png" },
       { name: "https://res.cloudinary.com/djwzwq4cu/image/upload/v1717857169/vs410fg2x4z91zhwea3s.png" },
@@ -88,7 +88,7 @@ const AllProjectsdata: Data[] = [
     id: 6,
     name: "Find Your Movie | OMDB API",
     description: "This application, meticulously crafted with HTML, CSS, and JavaScript, showcases my proficiency in front-end development and API integration, along with advanced techniques such as debouncing and throttling for enhanced user experience.",
-    techstack: "HTML CSS JS",
+    techstack: "HTML,CSS,JS",
     images: [
       { name: "https://res.cloudinary.com/djwzwq4cu/image/upload/v1718017191/u1cdawvie5cx6czb4bae.png" },
       { name: "https://res.cloudinary.com/djwzwq4cu/image/upload/v1718017190/wx1xane3r4dfuj1sseia.png" },
