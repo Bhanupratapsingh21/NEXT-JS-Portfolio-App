@@ -20,7 +20,7 @@ export default function Home() {
 
           <div className="text-[20px] md:text-[20px] lg:text-3xl mt-4 text-white font-normal inter-var text-center" >
             <p >
-              Aspriring Full Stack Software
+              Full Stack Software
             </p>
             <FlipWords words={words} />
           </div>
