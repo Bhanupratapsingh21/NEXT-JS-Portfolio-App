@@ -24,7 +24,7 @@ const Project = () => {
   if (id >= db.length + 1) {
     return (
       <div className='text-center px-56 py-56'>
-        404 | Not Found
+        404 | Not-Found
       </div>
     )
   }
