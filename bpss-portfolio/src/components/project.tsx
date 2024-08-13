@@ -21,9 +21,7 @@ function Projecthome() {
                     <div className="grid overflow-hidden md:pr-6  grid-cols-1 mt-16 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full">
                         <Link className="col-span-1 lg:col-span-2  " href={"/project/1"}>
                             <WobbleCard
-
                                 containerClassName="col-span-1 lg:col-span-2 h-full  bg-pink-800  min-h-[500px] lg:min-h-[300px]"
-
                                 className=""
                             >
 
@@ -47,9 +45,9 @@ function Projecthome() {
 
                             </WobbleCard>
                         </Link>
-                        <Link className="col-span-1 h-full min-h-[500px] lg:min-h-[300px]" href={"project/2"}>
-                            <WobbleCard containerClassName="col-span-1 min-h-[500px] lg:min-h-[300px]  "
-                                className="min-h-[500px] lg:min-h-[300px]">
+                        <Link className="col-span-1 h-full  lg:min-h-[300px]" href={"project/2"}>
+                            <WobbleCard containerClassName="col-span-1 lg:min-h-[300px]  "
+                                className=" lg:min-h-[300px]">
                                 <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
                                     {AllProjectsdata[1].name}
                                 </h2>
@@ -80,7 +78,7 @@ function Projecthome() {
                             </WobbleCard>
                         </Link>
                         <Link href={"project/4"}>
-                            <WobbleCard containerClassName="  bg-gray-800  col-span-1 min-h-[300px]">
+                            <WobbleCard containerClassName="bg-gray-800  col-span-1 lg:min-h-[300px]">
                                 <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
                                     {AllProjectsdata[3].name}
                                 </h2>
