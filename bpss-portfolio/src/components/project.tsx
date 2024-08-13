@@ -19,9 +19,11 @@ function Projecthome() {
                 </div>
                 <div>
                     <div className="grid overflow-hidden md:pr-6  grid-cols-1 mt-16 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full">
-                        <Link className="col-span-1 lg:col-span-2 " href={"/project/1"}>
+                        <Link className="col-span-1 lg:col-span-2  " href={"/project/1"}>
                             <WobbleCard
-                                containerClassName="col-span-1 lg:col-span-2 h-full bg-pink-800 min-h-[500px] lg:min-h-[300px]"
+
+                                containerClassName="col-span-1 lg:col-span-2 h-full  bg-pink-800  min-h-[500px] lg:min-h-[300px]"
+
                                 className=""
                             >
 
@@ -31,7 +33,7 @@ function Projecthome() {
                                         {AllProjectsdata[0].name}
                                     </h2>
                                     <p className="mt-4 text-left  text-base/6 text-neutral-200">
-                                        {AllProjectsdata[0].description.slice(0, 110)}
+                                        {AllProjectsdata[0].description.slice(0, 52)}
                                     </p>
 
                                 </div>
@@ -45,10 +47,9 @@ function Projecthome() {
 
                             </WobbleCard>
                         </Link>
-
-
-                        <Link href={"project/2"}>
-                            <WobbleCard containerClassName=" col-span-1 ">
+                        <Link className="col-span-1 h-full min-h-[500px] lg:min-h-[300px]" href={"project/2"}>
+                            <WobbleCard containerClassName="col-span-1 min-h-[500px] lg:min-h-[300px]  "
+                                className="min-h-[500px] lg:min-h-[300px]">
                                 <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
                                     {AllProjectsdata[1].name}
                                 </h2>
@@ -79,7 +80,7 @@ function Projecthome() {
                             </WobbleCard>
                         </Link>
                         <Link href={"project/4"}>
-                            <WobbleCard containerClassName=" col-span-1 min-h-[300px]">
+                            <WobbleCard containerClassName="  bg-gray-800  col-span-1 min-h-[300px]">
                                 <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
                                     {AllProjectsdata[3].name}
                                 </h2>
@@ -90,7 +91,7 @@ function Projecthome() {
                         </Link>
                         <Link className="col-span-1 lg:col-span-2 " href={"/project/5"}>
                             <WobbleCard
-                                containerClassName="col-span-1 lg:col-span-2 h-full bg-pink-800 min-h-[500px] lg:min-h-[300px]"
+                                containerClassName="col-span-1 lg:col-span-2 h-full  bg-indigo-600  min-h-[500px] lg:min-h-[300px]"
                                 className=""
                             >
                                 <div className="max-w-xs">
@@ -98,7 +99,7 @@ function Projecthome() {
                                         {AllProjectsdata[4].name}
                                     </h2>
                                     <p className="mt-4 text-left  text-base/6 text-neutral-200">
-                                        {AllProjectsdata[4].description.slice(0, 110)}
+                                        {AllProjectsdata[4].description.slice(0, 111)}
                                     </p>
                                 </div>
                                 <Image
