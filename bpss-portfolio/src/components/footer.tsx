@@ -33,7 +33,7 @@ function Fotter() {
             </li>
             <li>
               <Link
-                href="/aboutme"
+                href="/About-Me"
                 className="hover:text-white transition-colors duration-300"
               >
                 Education
@@ -41,10 +41,10 @@ function Fotter() {
             </li>
             <li>
               <Link
-                href="/connectwithme"
+                href="/Connect-With-Me"
                 className="hover:text-white transition-colors duration-300"
               >
-                Contact Me
+                Contact With Me
               </Link>
             </li>
           </ul>

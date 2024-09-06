@@ -1,18 +1,26 @@
 "use client"
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { twMerge } from "tailwind-merge";
 import { WobbleCard } from "./ui/wobble-card";
 import AllProjectsdata from "@/db";
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+
 function Projecthome() {
+
 
     return (
         <>
+
+
+
             <div className=" w-[90vw] md:pt-24  mx-auto antialiased relative">
                 <div >
                     <div>
-                        <h1 className="text-left text-3xl md:text-5xl">Project's</h1>
-                        <p className="mt-4 text-left  text-base/6 text-neutral-200">
+                        <h2 className="max-w-7xl  mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
+                            Project's
+                        </h2>
+                        <p className="mt-4 text-left   text-base/6 text-neutral-200">
                             Welcome to my projects showcase! Below, you'll find a selection of projects that showcase my skills and passion for building innovative solutions. Each project represents a unique journey of problem-solving, creativity, and continuous learning..
                         </p>
                     </div>
@@ -115,4 +123,53 @@ function Projecthome() {
         </>
     );
 }
-export default Projecthome 
+export default Projecthome
+
+/*
+idea for the next version 
+<div className="w-full h-full py-20">
+                <div>
+                    <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
+                        Project's
+                    </h2>
+                    <p className="mt-4 text-left pl-4  text-base/6 text-neutral-200">
+                        Welcome to my projects showcase! Below, you'll find a selection of projects that showcase my skills and passion for building innovative solutions. Each project represents a unique journey of problem-solving, creativity, and continuous learning..
+                    </p>
+                </div>
+                <Carousel items={cards} />
+            </div>
+ const cards = AllProjectsdata.map((data, index) => {
+        let card = {
+            category: data.category,
+            title: data.name,
+            src: data.images[0].name,
+            redirectlink: `/project/${data.id}`,
+        }
+        return (
+            <Card key={card.title} card={card} index={index} />
+        )
+    })
+
+    // 2nd idea 
+     const Skeleton = () => (
+        <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl   dark:bg-dot-white/[0.2] bg-dot-black/[0.2] [mask-image:radial-gradient(ellipse_at_center,white,transparent)]  border border-transparent dark:border-white/[0.2] bg-neutral-100 dark:bg-black"></div>
+    );
+    const items = [
+        "md:col-span-1",
+        "md:col-span-1",
+        "md:col-span-1",
+        "md:col-span-1",
+    ];
+
+    <BentoGrid className="w-full mt-16 mx-auto md:auto-rows-[20rem]">
+                    {AllProjectsdata.map((item, i) => (
+                        <BentoGridItem
+                            key={i}
+                            title={item.name}
+                            description={`${item.description.slice(0, 97)}...`}
+                            header={<Skeleton />}
+                            className={items[i]}
+                        />
+                    ))}
+                </BentoGrid>
+*/

@@ -2,6 +2,7 @@
 interface Data {
   id: number;
   name: string;
+  category : string,
   description: string;
   techstack: string;
   images: { name: string }[];
@@ -14,6 +15,7 @@ const AllProjectsdata: Data[] = [
   {
     id: 1,
     name: "URL Shortner & Analytics",
+    category : "SaaS Tool",
     description: "Our new URL Shortener App, built with the MERN stack, offers a seamless way to manage and track your links. It features secure user authentication using JWT tokens and bcrypt, allowing users to sign up and log in safely. The app simplifies link sharing by converting long URLs into short, manageable ones, and provides detailed analytics to track link performance, including request counts, IP addresses, and device information. Utilizing Node.js, Express, React.js, Redux, and Mongoose, this app combines modern technology with robust functionality for both personal and professional use.",
     techstack: "MERN : React JS, Node JS, Express, Mongoose, MongoDB, JWT Tokens, Bcrypt, etc..",
     images: [
@@ -28,6 +30,7 @@ const AllProjectsdata: Data[] = [
   {
     id: 2,
     name: "The Blog",
+    category : "Social Application",
     description: "Embark on a journey of creativity with our latest creation, built with the dynamic trio of React, Tailwind CSS, and Appwrite React-Redux . Our platform empowers users not only to create captivating blogs but also to share, edit, delete, sign up, and log in seamlessly. Dive into a world of endless possibilities and exploration. Join us and unleash your blogging potential today! Check it out now! ",
     techstack: "React JS Chakra UI React Redux React Router  React-Form ContextApi Appwrite BaaS Tailwind",
     images: [
@@ -43,6 +46,7 @@ const AllProjectsdata: Data[] = [
   {
     id: 3,
     name: "Vibe Social Share Video And Tweets",
+    category : "Video And Post Shareing",
     description: "Vibe Social is an innovative and dynamic platform that combines the best features of video sharing and social networking. Built with a modern tech stack, including React.js, Node.js, Express, and MongoDB, Vibe Social allows users to seamlessly share and discover videos and tweets in a vibrant online community. Users can easily sign up or log in to their accounts, where they can explore a variety of content, including videos, posts, and tweets from other users. The app offers robust features such as subscribing to channels, liking, commenting, and sharing posts, as well as creating and managing personal playlists. With advanced search functionality, Vibe Social provides tailored video suggestions based on tags, ensuring users always discover content that matches their interests. The app also includes features for viewing watch history, managing subscriptions, and editing or deleting content. Users can private Own videos Edit Post Change Thumbnails and See channel status updates, making it easy to stay connected with their Audiance. Designed for scalability, Vibe Social is built to handle a growing user base and expanding features. Future updates will include an inbuilt transcoder, enhancing the video streaming experience even further.",
     techstack: "React.js, Node.js, Express, Mongoose, MongoDB, JWT Tokens, Bcrypt, Mongoose aggregation pipelines, Cloudinary, Multer, CORS, dotenv, Axios, Cloudinary video player CDN, Chakra UI, React Redux for global state, React DOM ,React Router",
     images: [
@@ -64,6 +68,7 @@ const AllProjectsdata: Data[] = [
   {
     id: 4,
     name: "Portfolio Website With NEXT-JS",
+    category : "Portfolio",
     description: "Portfolio Website For Myself : Utilized Next.js, Tailwind CSS, Accenternity UI , Ant Design, and Framer Motion for seamless animations. Explored frontend fundamentals, client-side components, and optimization techniques. Demonstrates proficiency in Next.js development. ",
     techstack: "NEXT JS ,TypeScript ,Tailwind CSS, Acceternity UI, Vercel",
     images: [
@@ -79,6 +84,7 @@ const AllProjectsdata: Data[] = [
   {
     id: 5,
     name: "Tata 1MG Clone FE",
+    category : "E-Commarce",
     description: "Built a responsive 1MG.com clone with React.js, HTML, CSS, JavaScript, React Router, Context API, and Chakra UI. Features include local storage data persistence, smooth navigation, and visually appealing components. Demonstrates front-end expertise and attention to detail.",
     techstack: "React.js, HTML, CSS, JavaScript, React Router, Context API, and Chakra UI. Features include local storage data persistence",
     images: [
@@ -94,6 +100,7 @@ const AllProjectsdata: Data[] = [
   {
     id: 6,
     name: "React Redux Todo-list",
+    category : "Tool",
     description: "Developed a versatile todo list application with React/Redux, empowering users to effortlessly manage tasks through functionalities including addition, deletion, editing, and marking tasks complete. Offering customization options such as priority and due dates enhances task organization.",
     techstack: "React.js, HTML, CSS, JavaScript, React Router, Context API, and Chakra UI. Features include local storage data persistence",
     images: [
@@ -109,6 +116,7 @@ const AllProjectsdata: Data[] = [
   {
     id: 7,
     name: "Find Your Movie | OMDB API",
+    category : "Movie Finding",
     description: "This application, meticulously crafted with HTML, CSS, and JavaScript, showcases my proficiency in front-end development and API integration, along with advanced techniques such as debouncing and throttling for enhanced user experience.",
     techstack: "HTML,CSS,JS",
     images: [
