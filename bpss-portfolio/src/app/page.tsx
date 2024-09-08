@@ -8,6 +8,7 @@ import React from "react";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 import Projecthome from "../components/project";
+import { Queastions_Accordation } from "@/components/component/Queastions-Accordation";
 
 export default function Home() {
   const words = ["Engineer", "Developer", "Coder", "Cypherpunk"];
@@ -22,9 +23,7 @@ export default function Home() {
             width={260}
             height={160}
           />
-          <h2 className="max-w-7xl  mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
-            Hi I'Am Bhanu
-          </h2>
+          <h2 className="text-3xl font-bold tracking-tighter md:text-center sm:text-4xl md:text-5xl">Hi I'Am Bhanu</h2>
           <div className="text-[20px] md:text-[20px] lg:text-3xl mt-4 text-white font-normal inter-var text-center" >
             <p >
               Full Stack Software
@@ -35,10 +34,15 @@ export default function Home() {
 
       </div>
       <TracingBeam className="none" >
-        <div className="z-10 relative pt-36">
+        <div className="z-10 py-6 relative pt-36">
+          <div className="pt-4">
+            <Queastions_Accordation />
+          </div>
           <Projecthome />
+
+
         </div>
-        <StarsBackground starDensity={0.00025}  className="z-5" />
+        <StarsBackground starDensity={0.00025} className="z-5" />
       </TracingBeam>
       <StarsBackground starDensity={0.00025} />
     </>

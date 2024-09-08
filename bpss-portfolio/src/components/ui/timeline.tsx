@@ -38,11 +38,11 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       ref={containerRef}
     >
       <div className="max-w-7xl mx-auto py-20">
-        <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
-          Changelog from my journey
+        <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-full">
+          Lines of Code, Lessons Learned: My Journey in Tech & Life
         </h2>
-        <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
-          I&apos;ve been working on Aceternity for the past 2 years. Here&apos;s
+        <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-md">
+          I&apos;ve been working As a SDE Intern At Eventory Since Aug 2024. Here&apos;s
           a timeline of my journey.
         </p>
       </div>

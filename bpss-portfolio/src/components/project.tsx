@@ -17,9 +17,9 @@ function Projecthome() {
             <div className=" w-[90vw] md:pt-24  mx-auto antialiased relative">
                 <div >
                     <div>
-                        <h2 className="max-w-7xl  mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
-                            Project's
-                        </h2>
+                        <div className="text-center my-3">
+                            <h2 className="text-3xl font-bold tracking-tighter text-left sm:text-4xl md:text-5xl">Project's</h2>
+                        </div>
                         <p className="mt-4 text-left   text-base/6 text-neutral-200">
                             Welcome to my projects showcase! Below, you'll find a selection of projects that showcase my skills and passion for building innovative solutions. Each project represents a unique journey of problem-solving, creativity, and continuous learning..
                         </p>

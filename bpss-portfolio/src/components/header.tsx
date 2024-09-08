@@ -9,6 +9,7 @@ import {
     IconHome,
     IconNewSection,
     IconCpu2,
+    IconAi,
     IconSchool,
 } from "@tabler/icons-react";
 import Image from "next/image";
@@ -31,11 +32,18 @@ function Header() {
             href: "/projects",
         },
         {
+            title: "My Ai (Chat With It)",
+            icon: (
+                <IconAi className="h-full w-full text-black md:dark:text-neutral-300" />
+            ),
+            href: "/My-Ai",
+        },
+        {
             title: "Education And Exprience",
             icon: (
                 <IconSchool className="h-full w-full text-black md:dark:text-neutral-300" />
             ),
-            href: "/About-me",
+            href: "/About-Me",
         },
         {
             title: "Connect With Me",
@@ -55,7 +63,7 @@ function Header() {
                 <div className="navigation-card md:hidden">
                     {links.map((link) => (
                         <Link key={link.title} className="tab" href={link.href}>
-                           {link.icon}
+                            {link.icon}
                         </Link>
                     ))}
                 </div>
