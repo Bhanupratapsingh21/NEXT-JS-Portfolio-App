@@ -49,7 +49,11 @@
   border-radius: 50px;
   position: sticky;
 }
-
+.cardofchat{
+ 
+  inset: 0;
+  background: radial-gradient(circle at 100% 107%, #ff89cc 0%, #9cb8ec 30%, #00ffee 60%, #62c2fe 100%);
+}
 .tab {
   display: flex;
   align-items: center;
