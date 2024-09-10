@@ -1,21 +1,54 @@
-'use client'
-
+'use client';
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
 import React, { useEffect, useRef, useState } from "react";
 import ReactMarkdown from 'react-markdown';
+import axios from 'axios';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
 
 const Page = () => {
-    // Initialize messages array
-    const initialMsgs = [
-        { time: "12:40 PM", sender: "user", msg: "hello1", status: "done" },
-        { time: "12:41 PM", sender: "ai", msg: "hello2", status: "done" },
-        { time: "12:42 PM", sender: "user", msg: "hello3", status: "done" },
-        { time: "12:43 PM", sender: "ai", msg: "hello4", status: "done" },
-        { time: "12:44 PM", sender: "user", msg: "hello5", status: "done" },
-        { time: "12:45 PM", sender: "ai", msg: "hello6", status: "done" },
+    const placeholders = [
+        "What Are The Tech Stack's You Know?",
+        "Are You Currently Working With ?",
+        "Tell Me About Your Self?",
+        "What is Your Nickname",
     ];
+    const [isDialogOpen, setIsDialogOpen] = useState(true); // Initialize to true to open on l
+    const [sortedMsgs, setSortedMsgs] = useState<any[]>([]);
+    const [loading, setLoading] = useState(false);
+    const [prompt, setPrompt] = useState('');
+    const [error, setError] = useState<string | null>(null);
+    const [openDialog, setOpenDialog] = useState(false);
+    const triggerRef = useRef<HTMLButtonElement | null>(null);
+    const chatEndRef = useRef<HTMLDivElement | null>(null);
 
-    // Helper function to format the current time in "hh:mm AM/PM" format
+    useEffect(() => {
+
+        if (triggerRef.current) {
+            triggerRef.current.click();
+        }
+    }, []);
+    useEffect(() => {
+        if (chatEndRef.current) {
+            chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [sortedMsgs]);
     const formatTime = (date: Date): string => {
         let hours = date.getHours();
         const minutes = date.getMinutes();
@@ -26,35 +59,8 @@ const Page = () => {
         return `${hours}:${minutesStr} ${ampm}`;
     };
 
-    // Initialize sorted messages
-    const [sortedMsgs, setSortedMsgs] = useState(initialMsgs);
-
-    // State for loading and prompt
-    const [loading, setLoading] = useState(false);
-    const [prompt, setPrompt] = useState('');
-
-    const placeholders = [
-        "What's the first rule of Fight Club?",
-        "Who is Tyler Durden?",
-        "Where is Andrew Laeddis Hiding?",
-        "Write a Javascript method to reverse a string",
-        "How to assemble your own PC?",
-    ];
-
-    const chatEndRef = useRef<HTMLDivElement | null>(null);
-
-    // Auto-scroll to the bottom of the chat
-    useEffect(() => {
-        if (chatEndRef.current) {
-            chatEndRef.current.scrollIntoView({ behavior: "smooth" });
-        }
-    }, [sortedMsgs]);
-
-    // Function to handle generating the AI response
     const handleGenerate = async (userMsg: string) => {
-        setLoading(true); // Set loading state to true
-
-        // Add user message to the array
+        setLoading(true);
         const userMsgObj = {
             time: formatTime(new Date()),
             sender: "user",
@@ -63,32 +69,42 @@ const Page = () => {
         };
         setSortedMsgs((prevArray) => [...prevArray, userMsgObj]);
 
-        // Call API to generate AI response
-        const response = await fetch('/api/generate', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ prompt: userMsg }), // Send user's message as the prompt
-        });
-        const data = await response.json();
+        try {
+            // Call API to generate AI response
+            const response = await axios.post('/api/generate', { prompt: userMsg });
 
-        // Add AI response to the array
-        const aiMsgObj = {
-            time: formatTime(new Date()), // Time for AI response
-            sender: "ai",
-            msg: data.text.toString(),
-            status: "done",
-        };
-        setSortedMsgs((prevArray) => [...prevArray, aiMsgObj]);
+            // Add AI response to the array
+            const aiMsgObj = {
+                time: formatTime(new Date()), // Time for AI response
+                sender: "ai",
+                msg: response.data.text.toString(),
+                status: "done",
+            };
+            setSortedMsgs((prevArray) => [...prevArray, aiMsgObj]);
+        } catch (error: any) {
+            const errorMsg = 'An error occurred while generating the response. Please try again later.';
+            setError(errorMsg);
 
-        setLoading(false); // Set loading state to false
+            // Push error message to the array
+            const errorMsgObj = {
+                time: formatTime(new Date()),
+                sender: "system",
+                msg: errorMsg,
+                status: "done",
+            };
+            setSortedMsgs((prevArray) => [...prevArray, errorMsgObj]);
+
+            // Show error dialog
+            setOpenDialog(true);
+        } finally {
+            setLoading(false); // Set loading state to false
+        }
     };
 
-    // Handle user input change
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPrompt(e.target.value);
     };
 
-    // Handle form submission
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (prompt.trim() !== "") {
@@ -97,56 +113,82 @@ const Page = () => {
         }
     };
 
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
+    };
+
+
     return (
         <>
-            <div className="flex -mb-32 h-screen antialiased text-gray-800">
-                <div className="flex flex-row h-full w-full overflow-x-hidden">
-                    <div className="flex flex-col flex-auto h-full p-6">
-                        <div className="cardofchat absolute flex pb-12 flex-col overflow-y-scroll flex-auto flex-shrink-0 h-full p-4">
-                            <div className="flex pt-16 flex-col mb-4">
+            <div className="flex antialiased text-gray-800">
+                <div className="flex flex-row w-full overflow-x-hidden">
+                    <div className="flex flex-col flex-auto p-6">
+                        <div className="cardofchat absolute flex pb-20 flex-col overflow-y-scroll flex-auto flex-shrink-0 h-full p-4">
+                            <div className="flex pt-16 flex-col">
                                 <div className="flex flex-col-reverse">
                                     <div className="grid grid-cols-12 gap-y-2">
-                                        {
-                                            sortedMsgs.map((msg, index) => {
-                                                return msg.sender === "user" ? (
-                                                    <div key={index} className="col-start-6 col-end-13 p-3 rounded-lg">
-                                                        <div className="flex items-center justify-start flex-row-reverse">
-                                                            <div
-                                                                className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
-                                                            >
-                                                                U
-                                                            </div>
-                                                            <div
-                                                                className="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
-                                                            >
-                                                                <ReactMarkdown>{msg.msg}</ReactMarkdown>
-                                                            </div>
+                                        {sortedMsgs.map((msg, index) => (
+                                            msg.sender === "user" ? (
+                                                <div key={index} className="col-start-6 col-end-13 p-3 rounded-lg">
+                                                    <div className="flex items-center justify-start flex-row-reverse">
+                                                        <div
+                                                            className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
+                                                        >
+                                                            U
+                                                        </div>
+                                                        <div
+                                                            className="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
+                                                        >
+                                                            <ReactMarkdown>{msg.msg}</ReactMarkdown>
                                                         </div>
                                                     </div>
-                                                ) : (
-                                                    <div key={index} className="col-start-1 col-end-8 p-3 rounded-lg">
-                                                        <div className="flex flex-row items-center">
-                                                            <div
-                                                                className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
-                                                            >
-                                                                Ai
-                                                            </div>
-                                                            <div
-                                                                className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
-                                                            >
-                                                                <ReactMarkdown>{msg.msg}</ReactMarkdown>
-                                                            </div>
+                                                </div>
+                                            ) : (
+                                                <div key={index} className="col-start-1 col-end-8 p-3 rounded-lg">
+                                                    <div className="flex flex-row items-center">
+                                                        <div
+                                                            className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
+                                                        >
+                                                            Ai
+                                                        </div>
+                                                        <div
+                                                            className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
+                                                        >
+                                                            <ReactMarkdown>{msg.msg}</ReactMarkdown>
                                                         </div>
                                                     </div>
-                                                )
-                                            })
-                                        }
-                                        
+                                                </div>
+                                            )
+                                        ))}
+                                        {loading && (
+                                            <div className="col-start-1 col-end-8 p-3 rounded-lg">
+                                                <div className="flex flex-row items-center">
+                                                    <div
+                                                        className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
+                                                    >
+                                                        Ai
+                                                    </div>
+                                                    <div
+                                                        className="relative gap-x-2 flex justify-between ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
+                                                    >
+                                                        <div
+                                                            className="w-2 bg-[#d991c2] animate-pulse h-2 rounded-full animate-bounce"
+                                                        ></div>
+                                                        <div
+                                                            className="w-2 animate-pulse h-2 bg-[#9869b8] rounded-full animate-bounce"
+                                                        ></div>
+                                                        <div
+                                                            className="w-2 h-2 animate-pulse bg-[#6756cc] rounded-full animate-bounce"
+                                                        ></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
-                                    <div ref={chatEndRef} />
                                 </div>
+                                <div ref={chatEndRef} />
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -159,8 +201,88 @@ const Page = () => {
                     placeholders={placeholders}
                 />
             </div>
+
+            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>
+                            <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
+                                Hi! I'm Bhanu's Bot{" "}
+                                <span className="px-1 py-0.5 rounded-md bg-gray-100 dark:bg-neutral-800 dark:border-neutral-700 border border-gray-200">
+                                    Chat
+                                </span>{" "}
+                                now!
+                            </h4>
+                        </DialogTitle>
+                        <DialogDescription>
+                            <h3>You can ask me about my skills, experiences, projects, or anything related to my journey in tech and beyond. What would you like to know?</h3>
+                            <div className="py-10 flex flex-wrap gap-x-4 gap-y-5 items-start justify-start mx-auto">
+                                <div className="flex items-center justify-center">
+                                    <span className="p-3 py-0.5 rounded-md bg-black dark:bg-black dark:border-neutral-700 border border-gray-200 text-sm">
+                                        Ask About Tech Stack's
+                                    </span>
+                                </div>
+                                <div className="flex items-center justify-center">
+                                    <span className="p-3 py-0.5 rounded-md bg-black dark:bg-black dark:border-neutral-700 border border-gray-200 text-sm">
+                                        Ask About Me
+                                    </span>
+                                </div>
+                                <div className="flex items-center justify-center">
+                                    <span className="p-3 py-0.5 rounded-md bg-black dark:bg-black dark:border-neutral-700 border border-gray-200 text-sm">
+                                        My Education
+                                    </span>
+                                </div>
+                                <div className="flex items-center justify-center">
+                                    <span className="p-3 py-0.5 rounded-md bg-black dark:bg-black dark:border-neutral-700 border border-gray-200 text-sm">
+                                        My Skill's
+                                    </span>
+                                </div>
+                                <div className="flex items-center justify-center">
+                                    <span className="p-3 py-0.5 rounded-md bg-black dark:bg-black dark:border-neutral-700 border border-gray-200 text-sm">
+                                        Anything Related To Me
+                                    </span>
+                                </div>
+                                <div className="flex items-center justify-center">
+                                    <span className="p-3 py-0.5 rounded-md bg-black dark:bg-black dark:border-neutral-700 border border-gray-200 text-sm">
+                                        My Work Status
+                                    </span>
+                                </div>
+                            </div>
+                            <button onClick={() => setIsDialogOpen(false)} className="bg-black text-white dark:bg-white dark:text-black text-sm px-2 py-1 rounded-md border border-black w-28">
+                                Let's Chat
+                            </button>
+                        </DialogDescription>
+                    </DialogHeader>
+                </DialogContent>
+            </Dialog>
+
+            <AlertDialog open={openDialog} onOpenChange={(isOpen) => {
+                if (!isOpen) {
+                    // Re-render the component when dialog is closed
+                    setSortedMsgs([...sortedMsgs]);
+                }
+                setOpenDialog(isOpen);
+            }}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>Error</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            {error || 'An unknown error occurred.'}
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel onClick={handleCloseDialog}>Close</AlertDialogCancel>
+                        <AlertDialogAction onClick={handleCloseDialog}>OK</AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </>
-    )
+    );
 }
 
 export default Page;
+
+/*
+
+*/
