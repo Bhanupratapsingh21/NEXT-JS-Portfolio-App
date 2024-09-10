@@ -39,7 +39,6 @@ const Page = () => {
     const chatEndRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-
         if (triggerRef.current) {
             triggerRef.current.click();
         }
@@ -49,6 +48,7 @@ const Page = () => {
             chatEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
     }, [sortedMsgs]);
+
     const formatTime = (date: Date): string => {
         let hours = date.getHours();
         const minutes = date.getMinutes();
@@ -70,12 +70,12 @@ const Page = () => {
         setSortedMsgs((prevArray) => [...prevArray, userMsgObj]);
 
         try {
-            // Call API to generate AI response
+           
             const response = await axios.post('/api/generate', { prompt: userMsg });
 
-            // Add AI response to the array
+         
             const aiMsgObj = {
-                time: formatTime(new Date()), // Time for AI response
+                time: formatTime(new Date()), 
                 sender: "ai",
                 msg: response.data.text.toString(),
                 status: "done",
@@ -84,8 +84,6 @@ const Page = () => {
         } catch (error: any) {
             const errorMsg = 'An error occurred while generating the response. Please try again later.';
             setError(errorMsg);
-
-            // Push error message to the array
             const errorMsgObj = {
                 time: formatTime(new Date()),
                 sender: "system",
@@ -93,11 +91,9 @@ const Page = () => {
                 status: "done",
             };
             setSortedMsgs((prevArray) => [...prevArray, errorMsgObj]);
-
-            // Show error dialog
             setOpenDialog(true);
         } finally {
-            setLoading(false); // Set loading state to false
+            setLoading(false); 
         }
     };
 
@@ -109,7 +105,7 @@ const Page = () => {
         e.preventDefault();
         if (prompt.trim() !== "") {
             handleGenerate(prompt);
-            setPrompt(''); // Clear the input field after submitting
+            setPrompt(''); 
         }
     };
 
