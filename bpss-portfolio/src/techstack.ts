@@ -18,6 +18,7 @@ const techstack = [
     "Docker",
     "Node.js",
     "Express",
+    "NGINX",
     "MongoDB",
     "Mongoose"
 ]
