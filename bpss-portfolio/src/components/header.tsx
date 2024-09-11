@@ -11,6 +11,7 @@ import {
     IconCpu2,
     IconAi,
     IconSchool,
+    IconBrandWhatsapp
 } from "@tabler/icons-react";
 import Image from "next/image";
 
@@ -51,6 +52,13 @@ function Header() {
                 <IconMessage2 className="h-full w-full text-black md:dark:text-neutral-300" />
             ),
             href: "/Connect-With-Me",
+        },
+        {
+            title: "DM Me",
+            icon: (
+                <IconBrandWhatsapp className="h-full w-full text-black md:dark:text-neutral-300" />
+            ),
+            href: "/Contact-Form",
         },
     ];
     return (

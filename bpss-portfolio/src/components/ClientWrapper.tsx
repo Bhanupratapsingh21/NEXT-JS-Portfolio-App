@@ -7,7 +7,7 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
   const pathname = usePathname(); // Get the current path
 
   // List of paths where the footer should not be displayed
-  const noFooterPaths = ["/My-Ai"];
+  const noFooterPaths = ["/My-Ai","/Connect-With-Me","/Contact-Form"];
 
   return (
     <>

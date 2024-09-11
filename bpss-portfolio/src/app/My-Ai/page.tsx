@@ -82,7 +82,7 @@ const Page = () => {
             };
             setSortedMsgs((prevArray) => [...prevArray, aiMsgObj]);
         } catch (error: any) {
-            const errorMsg = 'An error occurred while generating the response. Please try again later.';
+            const errorMsg = 'An error occurred while generating the response. It May Cause By Asking Out Of Context Things Stay In Your Limits';
             setError(errorMsg);
             const errorMsgObj = {
                 time: formatTime(new Date()),
@@ -120,12 +120,12 @@ const Page = () => {
                 <div className="flex flex-row w-full overflow-x-hidden">
                     <div className="flex flex-col flex-auto p-6">
                         <div className="cardofchat absolute flex pb-20 flex-col overflow-y-scroll flex-auto flex-shrink-0 h-full p-4">
-                            <div className="flex pt-16 flex-col">
+                            <div className="flex pt-28 md:pt-16 flex-col">
                                 <div className="flex flex-col-reverse">
                                     <div className="grid grid-cols-12 gap-y-2">
                                         {sortedMsgs.map((msg, index) => (
                                             msg.sender === "user" ? (
-                                                <div key={index} className="col-start-6 col-end-13 p-3 rounded-lg">
+                                                <div key={index} className="col-start-3 col-end-13 p-3 rounded-lg">
                                                     <div className="flex items-center justify-start flex-row-reverse">
                                                         <div
                                                             className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
@@ -140,7 +140,7 @@ const Page = () => {
                                                     </div>
                                                 </div>
                                             ) : (
-                                                <div key={index} className="col-start-1 col-end-8 p-3 rounded-lg">
+                                                <div key={index} className="col-start-1 col-end-12 p-3 rounded-lg">
                                                     <div className="flex flex-row items-center">
                                                         <div
                                                             className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
@@ -190,7 +190,7 @@ const Page = () => {
                 </div>
             </div>
 
-            <div className="flex bg-gray-700 justify-center mb-4">
+            <div className="flex bg-gray-700 justify-center px-4 mb-4">
                 <PlaceholdersAndVanishInput
                     onChange={handleChange}
                     onSubmit={onSubmit}
