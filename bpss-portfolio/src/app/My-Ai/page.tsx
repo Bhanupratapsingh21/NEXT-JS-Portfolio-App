@@ -119,7 +119,7 @@ const Page = () => {
             <div className="flex antialiased text-gray-800">
                 <div className="flex flex-row w-full overflow-x-hidden">
                     <div className="flex flex-col flex-auto p-6">
-                        <div className="cardofchat absolute flex pb-20 flex-col overflow-y-scroll flex-auto flex-shrink-0 h-full p-4">
+                        <div className="cardofchat absolute flex pb-24 md:pb-20 flex-col overflow-y-scroll flex-auto flex-shrink-0 h-[99%] md:h-full p-4">
                             <div className="flex pt-28 md:pt-16 flex-col">
                                 <div className="flex flex-col-reverse">
                                     <div className="grid grid-cols-12 gap-y-2">
