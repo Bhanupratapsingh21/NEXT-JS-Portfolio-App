@@ -6,7 +6,8 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import ClientWrapper from "@/components/ClientWrapper";
 import { Github, Linkedin, Twitter, Instagram } from "lucide-react";
-
+import { Analytics } from '@vercel/analytics/next';
+ 
 const notoSans = Noto_Sans_Devanagari({ subsets: ["devanagari"], weight: "400" });
 const inter = Inter({ subsets: ["latin"] });
 
@@ -51,7 +52,10 @@ export default function RootLayout({
         <link rel="preload" href="https://fonts.gstatic.com" as="font" type="font/woff2" />
       </head>
       <body className={`${notoSans.className} ${inter.className} bg-black text-white`}>
-        <ClientWrapper>{children}</ClientWrapper>
+        <ClientWrapper>
+          {children}
+        </ClientWrapper>
+        <Analytics />
       </body>
     </html>
   );
