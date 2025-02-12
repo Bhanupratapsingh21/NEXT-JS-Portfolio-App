@@ -1,94 +1,56 @@
-import Link from "next/link"
-function Fotter() {
+"use client";
+
+import { Github, Linkedin, Twitter, Instagram, Mail, Phone } from "lucide-react";
+
+const Footer = () => {
   return (
-    <footer className="bg-black text-gray-400 pb-12">
-      <hr />
-      <br />
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-4 sm:px-6 lg:px-8">
-        <div className="h-60 overflow-y-scroll hide-scrollbar ">
-          <h2 className="text-white text-lg font-semibold mb-4">About-Me</h2>
-          <p className="mb-4 ">
-            Embarking on my journey after passing my 12th, I'm currently in my first year of college. Fascinated by the intersection of commerce and coding, I'm diving deep into learning the MERN stack at Masai School.
+    <footer id="footer" className="bg-black border-t border-neutral-800 text-neutral-400">
+      <div className="max-w-7xl mx-auto px-16 py-12">
+        {/* Footer Grid */}
+        <div className="flex  justify-between items-start gap-8">
 
-            As I navigate this transformative journey, I'm also exploring DSA & DevOps, honing my skills to meet industry demands. Alongside coding, I bring a creative touch with proficiency in multimedia tools like Premiere, Canva, and Figma.
+          {/* Brand Column */}
+          <div className="w-1/3">
+            <h3 className="text-2xl  font-bold text-white mb-4">Bhanu Pratap Singh</h3>
+            <p className="mb-4">
+              Full Stack Developer crafting exceptional digital experiences with cutting-edge technologies.
+            </p>
+            <div className="flex space-x-4">
+              <a href="https://github.com/Bhanupratapsingh21" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
+                <Github className="h-6 w-6" />
+              </a>
+              <a href="https://linkedin.com/in/bhanu-pratap-singh-bbb976257" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
+                <Linkedin className="h-6 w-6" />
+              </a>
+              <a href="https://x.com/bhanu_pratap_21" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
+                <Twitter className="h-6 w-6" />
+              </a>
+              <a href="https://instagram.com/bpss.code/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
+                <Instagram className="h-6 w-6" />
+              </a>
+            </div>
+          </div>
 
-            Eager to explore internships and opportunities in fintech, edtech, and beyond, I'm enthusiastic about contributing to the dynamic tech industry. If you're looking for a dedicated learner with a blend of coding skills and multimedia expertise, let's connect and explore possibilities together...
-          </p>
-        </div>
-        <div>
-          <h2 className="text-white text-lg font-semibold mb-4">Quick Links</h2>
-          <ul>
-            <li>
-              <Link href={"/"}>
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/projects"
-                className="hover:text-white transition-colors duration-300"
-              >
-                Project's
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/About-Me"
-                className="hover:text-white transition-colors duration-300"
-              >
-                Education
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/Connect-With-Me"
-                className="hover:text-white transition-colors duration-300"
-              >
-                Contact With Me
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h2 className="text-white text-lg font-semibold mb-4">Follow Me</h2>
-          <div className="grid  text-left grid-cols-2 ">
 
-            <Link
-              href="https://www.instagram.com/bhanu_pratap_2119"
-              className="hover:text-white transition-colors duration-300"
-            >
-              Instagram
-            </Link>
-            <Link
-              href="https://github.com/Bhanupratapsingh21"
-              className="hover:text-white transition-colors duration-300"
-            >
-              Git-Hub
-            </Link>
-            <Link
-              href="https://x.com/BhanuFreelancer"
-              className="hover:text-white transition-colors duration-300"
-            >
-              Twitter (X)
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/bhanu-pratap-singh-bbb976257/"
-              className="hover:text-white transition-colors duration-300"
-            >
-              Linkedin
-            </Link>
-
+          {/* Contact Info */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Contact</h4>
+            <ul className="space-y-2">
+              <li className="flex items-center">
+                <Mail className="w-5 h-5 mr-2 text-blue-400" />
+                <a href="mailto:bhanupss137@gmail.com" className="hover:text-blue-400">bhanupss137@gmail.com</a>
+              </li>
+            </ul>
           </div>
         </div>
-        <div>
-          <h2 className="text-white text-lg font-semibold mb-4">Contact Us</h2>
-          <p>Rajasthan , India</p>
-          <p>Beawar</p>
-          <p>Email: bhanupss137@gmail.com</p>
+
+        {/* Copyright */}
+        <div className="pt-8 mt-8 border-t border-neutral-800 text-center">
+          <p>&copy; 2025 Bhanu Pratap Singh. All rights reserved.</p>
         </div>
       </div>
-      <p className="text-center text-xs pt-8">© 2024 BPSS. All rights reserved.</p>
     </footer>
-  )
-}
-export default Fotter
+  );
+};
+
+export default Footer;

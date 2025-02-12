@@ -1,35 +1,30 @@
 "use clinet"
-import { useState } from "react";
-import { TracingBeam } from "@/components/ui/tracing-beam"
-import Projecthome from "@/components/project"
-import { HoverEffect } from "@/components/ui/card-hover-effect";
 import AllProjectsdata from "@/db";
+import ProjectCard from "@/components/ProjectCard";
 function Project() {
-    const data = AllProjectsdata.slice(5, AllProjectsdata.length)
-    const projects = data.map((data,i )=> ({
-        title: data.name,
-        description: data.description,
-        link: `/project/${data.id}`,
-    }))
-
 
     return (
-        <TracingBeam>
-            <div>
-                <Projecthome />
-            </div>
-            <div>
+
+        <div className="bg-black/20 border-b border-white/10">
+            <div className="max-w-7xl mx-auto py-28 px-4 sm:px-10 lg:px-16">
                 <div>
-                    <h1 className="text-3xl md:mx-0 mx-4 text-left mt-16 mb-6 md:text-5xl">Some More Basic Projects</h1>
-                    <p className="mt-4 text-left md:mx-0  mx-4 text-base/6 text-neutral-200">
-                        Some Basic Or The Project i have Created For Learning And Some Fun...
+                    <div className="text-center my-3">
+                        <h2 className="text-3xl bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20 font-bold tracking-tighter text-left sm:text-4xl md:text-5xl">Project's</h2>
+                    </div>
+                    <p className="mt-4 text-left   text-base/6 text-neutral-200">
+                        Welcome to my projects showcase! Below, you'll find a selection of projects that showcase my skills and passion for building innovative solutions. Each project represents a unique journey of problem-solving, creativity, and continuous learning..
                     </p>
                 </div>
-                <div className="max-w-5xl mx-auto px-4">
-                    <HoverEffect items={projects} />
+                <div className="grid grid-cols-1 md:grid-cols-2 px-2 py-10 lg:grid-cols-2 gap-6">
+                    {
+                        AllProjectsdata.map((data) => (
+                            <ProjectCard {...data} />
+                        ))
+                    }
                 </div>
             </div>
-        </TracingBeam>
+        </div>
+
     )
 }
 export default Project

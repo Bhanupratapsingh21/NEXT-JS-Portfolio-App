@@ -3,6 +3,55 @@ import Image from "next/image";
 
 const data = [
     {
+        title: "Dec 2024 - Present",
+        content: (
+            <div>
+                {/* Eventory Experience */}
+                <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-6">
+                    After completing my <b>3-month internship</b> at Eventory , where I worked on vendor and customer platforms, payments integration, and event booking features,
+                </p>
+
+                {/* Newral & CSX Experience */}
+                <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
+                    I&apos;ve joined <b>Newral & CSX</b>, one of India's <b>top tech agencies</b>, where I&apos;m working with <b>US-based clients</b> like <b>Assume Chat & Fizz Social</b> and leading <b>Indian edtech startups</b> including <b>Competishun NEET Kaka JEE & Abroad Kaka  And Other Clients Like OTT Bharat App, Paratalks, and Rezume.dev</b>.
+                </p>
+
+                {/* Image Grid */}
+                <div className="grid grid-cols-2 gap-4">
+                    <Image
+                        src="https://res.cloudinary.com/dhvkjanwa/image/upload/v1739288580/qrfjgl5ayfadxd84h58g.jpg"
+                        alt="CSX Platform"
+                        width={500}
+                        height={500}
+                        className="rounded-lg object-contain h-20 md:h-44 lg:h-60 w-full shadow-lg"
+                    />
+                    <Image
+                        src="https://res.cloudinary.com/dhvkjanwa/image/upload/v1739288988/ysspkyfkncgoeuddtzgi.jpg"
+                        alt="Paratalks Tech Agency"
+                        width={500}
+                        height={500}
+                        className="rounded-lg object-contain h-20 md:h-44 lg:h-60 w-full shadow-lg"
+                    />
+                    <Image
+                        src="https://res.cloudinary.com/dhvkjanwa/image/upload/v1739288580/th40gtw2gqnk11tpajdi.jpg"
+                        alt="Newral Booking"
+                        width={500}
+                        height={500}
+                        className="rounded-lg object-contain h-20 md:h-44 lg:h-60 w-full shadow-lg"
+                    />
+
+                    <Image
+                        src="https://res.cloudinary.com/dhvkjanwa/image/upload/v1739288990/rftuvw1iy4w0yagoxf5m.png"
+                        alt="US-Based Clients & EdTech Startups"
+                        width={500}
+                        height={500}
+                        className="rounded-lg object-contain h-20 md:h-44 lg:h-60 w-full shadow-lg"
+                    />
+                </div>
+            </div>
+        ),
+    },
+    {
         title: "Aug 2024",
         content: (
             <div>
@@ -44,7 +93,7 @@ const data = [
         ),
     },
     {
-        title: "June-July 2023",
+        title: "June-July 2024",
         content: (
             <div>
                 <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
@@ -157,7 +206,7 @@ const data = [
                         height={500}
                         className="rounded-lg object-contain h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
                     />
-                     <Image
+                    <Image
                         src="https://res.cloudinary.com/djwzwq4cu/image/upload/v1725705267/WhatsApp_Image_2024-09-07_at_16.03.53_34f7de8d_jbxdhh.jpg"
                         alt="hero template"
                         width={500}
@@ -165,7 +214,47 @@ const data = [
                         className="rounded-lg object-contain h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
                     />
                 </div>
-                
+
+            </div>
+        ),
+    },
+    {
+        title: "June-July 2023",
+        content: (
+            <div>
+                <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+                    Content Creation Journey: Achieved 250K+ Monthly Views in 3 Months
+                </p>
+                <div className="mb-8">
+                    <div className="flex gap-4 mb-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
+                        ✅ Created engaging video content across multiple platforms, driving significant audience growth.
+                    </div>
+                    <div className="flex gap-4 mb-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
+                        ✅ Focused on high-quality editing, storytelling, and audience interaction to maximize engagement.
+                    </div>
+                    <div className="flex gap-4 mb-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
+                        ✅ Utilized analytics to optimize content strategy and increase viewership.
+                    </div>
+                    <div className="flex gap-4 mb-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
+                        ✅ Gained experience in brand building, audience retention, and content monetization strategies.
+                    </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                    <img
+                        src="https://res.cloudinary.com/dhvkjanwa/image/upload/v1739291333/wyfmgpsflumsutxlohnv.jpg"
+                        alt="Content Creation Screenshot 3"
+                        width={500}
+                        height={500}
+                        className="rounded-lg object-contain h-20 md:h-44 lg:h-60 w-full shadow-lg"
+                    />
+                    <img
+                        src="https://res.cloudinary.com/dhvkjanwa/image/upload/v1739291334/ymzkww2pkgrxbgjdipsf.jpg"
+                        alt="Content Creation Screenshot 4"
+                        width={500}
+                        height={500}
+                        className="rounded-lg object-contain h-20 md:h-44 lg:h-60 w-full shadow-lg"
+                    />
+                </div>
             </div>
         ),
     },

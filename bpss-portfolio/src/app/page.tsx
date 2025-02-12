@@ -1,50 +1,36 @@
-"use client";
-import { FlipWords } from "@/components/ui/flip-words";
-import { TracingBeam } from "@/components/ui/tracing-beam";
-import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
-import { WavyBackground } from "@/components/ui/wavy-background";
-import Image from "next/image";
-import React from "react";
-import { ShootingStars } from "@/components/ui/shooting-stars";
+"use client"
+import React, { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import { Spotlight } from "@/components/ui/spotlight";
 import { StarsBackground } from "@/components/ui/stars-background";
-import Projecthome from "../components/project";
-import { Queastions_Accordation } from "@/components/component/Queastions-Accordation";
+import Link from "next/link";
 
-export default function Home() {
-  const words = ["Engineer", "Developer", "Coder", "Cypherpunk"];
+// Dynamically import FlipWords to disable SSR
+const FlipWordsNoSSR = dynamic(() => import("@/components/ui/flip-words"), { ssr: false });
+
+export default function SpotlightPreview() {
+  const words = ["नमस्कार", "Hello", "Konnichiwa", "Hola Amigo", "Bonjour"];
+
   return (
-    <>
-      <div className="mt-10 overflow-hidden">
-        <div className="flex flex-col w-screen items-center justify-center">
-          <Image
-            src="/avatar2.png"
-            alt="img"
+    <div className="h-screen  w-full rounded-md flex md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
+      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
+      <div className="p-4 max-w-7xl gap-8  flex justify-center flex-col items-center mx-auto relative z-10 w-full pt-20 md:pt-0">
+        <div className="text-neutral-500 cursor-pointer gap-4 max-w-lg mx-auto my-2 text-sm text-center relative z-10 flex justify-center items-center">
+          <Link href={"/projects"} >Projects</Link>
+          <Link href={"/My-Ai"} >My-AI</Link>
+          <Link href={"/About-Me"} >About-Me</Link>
+          <Link href={"/Connect-With-Me"} >Contact</Link>
 
-            width={260}
-            height={160}
-          />
-          <h2 className="text-3xl font-bold tracking-tighter md:text-center sm:text-4xl md:text-5xl">Hi I'Am Bhanu</h2>
-          <div className="text-[20px] md:text-[20px] lg:text-3xl mt-4 text-white font-normal inter-var text-center" >
-            <p >
-              Full Stack Software
-            </p>
-            <FlipWords words={words} />
-          </div>
         </div>
-
+        <h1 className="text-4xl cursor-default md:text-7xl font-black text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
+          <FlipWordsNoSSR words={words} />
+          , I'm <br /> Bhanu Pratap Singh
+        </h1>
+        <p className="mt-3 cursor-default font-normal text-base text-neutral-300 max-w-lg text-center mx-auto">
+          Blending commercial acumen with cutting-edge technical skills. Passionate about creating impactful digital solutions with modern Tech stack and technologies.
+        </p>
       </div>
-      <TracingBeam className="none" >
-        <div className="z-10 py-6 relative pt-36">
-          <div className="pt-4">
-            <Queastions_Accordation />
-          </div>
-          <Projecthome />
-
-
-        </div>
-        <StarsBackground starDensity={0.00025} className="z-5" />
-      </TracingBeam>
-      <StarsBackground starDensity={0.00025} />
-    </>
+      <StarsBackground starDensity={0.00025} className="z-5" />
+    </div>
   );
 }

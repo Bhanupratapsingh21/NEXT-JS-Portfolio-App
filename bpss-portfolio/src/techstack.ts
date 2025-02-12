@@ -1,25 +1,17 @@
-const techstack = [
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "React",
-    "Tailwind CSS",
-    "Next.js",
-    "TypeScript",
-    "Chakra UI",
-    "Accenternity UI",
-    "ShadCN",
-    "AppWrite BaaS",
-    "Vercel",
-    "Git",
-    "GitHub",
-    "AWS",
-    "AWS S3",
-    "Docker",
-    "Node.js",
-    "Express",
-    "NGINX",
-    "MongoDB",
-    "Mongoose"
-]
-export default techstack
+const categories = {
+    Frontend: ["HTML", "CSS", "JavaScript", "React", "ZOD", "Next.js", "TypeScript"],
+    Backend: ["Node.js", "Express", "MongoDB", 'Prishma', "Postgress SQL", "Mongoose", "NGINX"],
+    "UI Libraries": ["Tailwind CSS", "Chakra UI", "ShadCN", "Accenternity UI"],
+    "DevOps & Cloud": ["AWS Services", "Docker", "Git", "GitHub", "Vercel Deployment"],
+    "Storage & BaaS": ["AWS S3", "AppWrite BaaS", "Database Management", "Cloud Storage"],
+    "Tools" : [
+    "Adobe PRE-PRO",
+    "Cap-Cut",
+    "CANVA",
+    "FIGMA",
+    "NOTION",
+    "Content Creation",
+    "Social Media MNG"]
+};
+
+export default categories

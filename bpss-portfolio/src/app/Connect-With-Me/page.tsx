@@ -1,51 +1,250 @@
+'use client'
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation"
-function Connectwithme() {
+import { useState } from 'react';
+import axios from 'axios';
+import React from "react";
+import { useRouter } from 'next/navigation';
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+import {
+    ShootingStars
+} from "@/components/ui/shooting-stars";
+import {
+    StarsBackground
+} from "@/components/ui/stars-background";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
+interface FormData {
+    access_key: string;
+    name: string;
+    contactinfo: string;
+    subject: string;
+    message: string;
+}
+function Connectwithme() {
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [error, setError] = useState('');
+    const [openDialog, setOpenDialog] = useState(false);
+    const router = useRouter(); // For redirection
+
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        const target = e.target as typeof e.target & {
+            name: { value: string };
+            contactinfo: { value: string };
+            subject: { value: string };
+            message: { value: string };
+        };
+
+        const formData: FormData = {
+            access_key: process.env.NEXT_PUBLIC_WEB_FORM_API_KEY || '',
+            name: target.name.value,
+            contactinfo: target.contactinfo.value,
+            subject: target.subject.value,
+            message: target.message.value,
+        };
+
+        if (!formData.access_key) {
+            setError('Access key missing');
+            setOpenDialog(true);
+            return;
+        }
+
+        try {
+            const response = await axios.post("https://api.web3forms.com/submit", formData, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+            });
+
+            if (response.data.success) {
+                setIsSubmitted(true);
+                setError('');
+                setOpenDialog(true);
+            } else {
+                setError('Something went wrong. Please try again later.');
+                setOpenDialog(true);
+            }
+        } catch (err) {
+            setError('Error submitting the form.');
+            setOpenDialog(true);
+        }
+    }
+
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
+        if (isSubmitted) {
+            router.push('/');
+        }
+    };
     return (
         <>
-            <div className="z-50 -mb-[47px] -mt-[125px]">
-                <BackgroundGradientAnimation>
-                    <div className="absolute z-55 inset-0 flex flex-col items-center justify-center text-white font-bold px-4 pointer-events-none text-4xl text-center md:text-4xl lg:text-7xl">
-                        <p className="bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20">
-                            Lets Connect With Me
-                        </p>
+            <section id="social_feed" className="bg-black py-24">
+                <div className="container mx-auto px-4">
 
+                    <div className="max-w-3xl mx-auto text-center mb-16">
+                        <span className="text-white font-medium text-sm tracking-wider uppercase">Get In Touch</span>
+                        <h2 className="bg-clip-text text-4xl text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20">Let's Build Something Amazing</h2>
                     </div>
-                    <div className="flex justify-center mt-[420px] align-middle z-80  md:mt-[355px] ">
-                        <div className="card">
-                            <a href="https://www.instagram.com/bhanu_pratap_2119" className="social-link1">
-                                <svg style={{ color: "white" }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-instagram" viewBox="0 0 16 16">
-                                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" fill="white">
-                                    </path>
-                                </svg>
-                            </a>
-                            <a href="https://github.com/Bhanupratapsingh21" className="social-link2">
-                                <svg viewBox="0 0 496 512" height="1em" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
-                                    </path>
-                                </svg> </a>
-                            <a href="https://linktr.ee/HTTPS_BHANU" className="social-link3">
-                                <svg style={{ color: "white" }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-discord" viewBox="0 0 16 16">
-                                    <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z" fill="white">
-                                    </path>
-                                </svg>
-                            </a>
-                            <a className="social-link3" href="https://x.com/BhanuFreelancer">
-                                <svg style={{ color: "white" }} fill="#ffffff" xmlns="http://www.w3.org/2000/svg" id="Capa_1" data-name="Capa 1" viewBox="0 0 24 24">
-                                    <path d="m18.9,1.153h3.682l-8.042,9.189,9.46,12.506h-7.405l-5.804-7.583-6.634,7.583H.469l8.6-9.831L0,1.153h7.593l5.241,6.931,6.065-6.931Zm-1.293,19.494h2.039L6.482,3.239h-2.19l13.314,17.408Z" />
-                                </svg>
-                            </a>
-                            <a href="https://www.linkedin.com/in/bhanu-pratap-singh-bbb976257/" className="social-link4">
-                                <svg fill="#fff" viewBox="0 0 448 512" height="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z">
-                                    </path>
-                                </svg>
-                            </a>
+
+
+                    <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+
+                        <div className="space-y-8">
+
+                            <div className="bg-neutral-900/50 backdrop-blur border border-neutral-800 rounded-xl p-8">
+                                <h3 className="text-xl font-semibold text-white mb-6">Quick Contact</h3>
+                                <div className="space-y-4">
+                                    <a href="mailto:contact@example.com"
+                                        className="flex items-center gap-4 text-gray-400 hover:text-blue-600 transition-colors">
+                                        <div className="size-12 flex items-center justify-center bg-blue-600/10 rounded-lg">
+                                            <svg className="size-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                            </svg>
+                                        </div>
+                                        <span>bhanupss137@gmail.com</span>
+                                    </a>
+                                    <div 
+                                        className="flex items-center gap-4 text-gray-400 hover:text-blue-600 transition-colors">
+                                        <div className="size-12 flex items-center justify-center bg-blue-600/10 rounded-lg">
+                                            <svg className="size-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                            </svg>
+                                        </div>
+                                        <span>Fill the Form with Your No <br /> i Will Reach Out to You asap</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className="bg-neutral-900/50 backdrop-blur border border-neutral-800 rounded-xl p-8">
+                                <h3 className="text-xl font-semibold text-white mb-6">Connect With Me</h3>
+                                <div className="grid grid-cols-2 z-50 gap-4">
+                                    <a href="https://github.com/Bhanupratapsingh21" className="flex items-center gap-3 text-gray-400 hover:text-blue-600 transition-colors">
+                                        <svg className="size-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                        </svg>
+                                        <span>GitHub</span>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/bhanu-pratap-singh-bbb976257" className="flex items-center gap-3 text-gray-400 hover:text-blue-600 transition-colors">
+                                        <svg className="size-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                        </svg>
+                                        <span>LinkedIn</span>
+                                    </a>
+                                    <a href="https://x.com/bhanu_pratap_21" className="flex items-center gap-3 text-gray-400 hover:text-blue-600 transition-colors">
+                                        <svg className="size-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                                        </svg>
+                                        <span>Twitter</span>
+                                    </a>
+                                    <a href="https://www.instagram.com/bpss.code/" className="flex items-center gap-3 text-gray-400 hover:text-blue-600 transition-colors">
+                                        <svg className="size-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z" />
+                                        </svg>
+                                        <span>Instagram</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
+                            <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
+                                Hi! Glad To See You Want To Message Me
+                            </h2>
+                            <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
+                                Fill This Form To Send Me a Message
+                            </p>
+                            <form className="my-8 relative z-10" onSubmit={handleSubmit}>
+                                <div className="mb-4">
+                                    <Label htmlFor="name">Your Name</Label>
+                                    <Input id="name" name="name" placeholder="Name" type="text" required />
+                                </div>
+                                <div className="mb-4">
+                                    <Label htmlFor="contactinfo">Contact Info</Label>
+                                    <Input id="contactinfo" name="contactinfo" placeholder="Email/Mobile-No/IG-Id" type="text" required />
+                                </div>
+                                <div className="mb-4">
+                                    <Label htmlFor="subject">Subject For Message</Label>
+                                    <select
+                                        id="subject"
+                                        name="subject"
+                                        className="flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm"
+                                        required
+                                    >
+                                        <option value="Hire Me">Hire Me</option>
+                                        <option value="Work With Me (Freelance)">Work With Me (Freelance)</option>
+                                        <option value="Some Info">Some Info</option>
+                                        <option value="Become A Friend">Become A Friend</option>
+                                        <option value="Want's To Go For A Date">Want's To Date Me</option>
+                                    </select>
+                                </div>
+                                <div className="mb-8">
+                                    <Label htmlFor="message">Your Message</Label>
+                                    <textarea
+                                        className="flex h-40 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm"
+                                        id="message"
+                                        name="message"
+                                        rows={9}
+                                        required
+                                    />
+                                </div>
+
+                                <button
+                                    className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+                                    type="submit"
+                                >
+                                    Submit &rarr;
+                                </button>
+                            </form>
+                            {isSubmitted && <p>Thank you! Your message has been sent.</p>}
+                            {error && <p>{error}</p>}
+                            
                         </div>
                     </div>
-                </BackgroundGradientAnimation>
-            </div>
+                </div>
+                
+
+            </section>
+            <AlertDialog open={openDialog} onOpenChange={(isOpen) => {
+                if (!isOpen) {
+                    handleCloseDialog();
+                }
+                setOpenDialog(isOpen);
+            }}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>{isSubmitted ? "Success" : "Error"}</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            {isSubmitted ? "Your message was successfully sent!" : error || 'An unknown error occurred.'}
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel onClick={handleCloseDialog}>Close</AlertDialogCancel>
+                        <AlertDialogAction onClick={handleCloseDialog}>OK</AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </>
     )
 }

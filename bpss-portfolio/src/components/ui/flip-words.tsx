@@ -1,9 +1,9 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
+import React, { useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/utils/cn";
 
-export const FlipWords = ({
+const FlipWords = ({
   words,
   duration = 3000,
   className,
@@ -13,21 +13,35 @@ export const FlipWords = ({
   className?: string;
 }) => {
   const [currentWord, setCurrentWord] = useState(words[0]);
-  const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  // thanks for the fix Julian - https://github.com/Julian-AT
+  // Function to split text into grapheme clusters (including Hindi combining characters)
+  const splitIntoGraphemes = (text: string) => {
+    // Use Intl.Segmenter if available (modern browsers)
+    if (typeof Intl !== 'undefined' && Intl.Segmenter) {
+      const segmenter = new Intl.Segmenter('hi', { granularity: 'grapheme' });
+      return Array.from(segmenter.segment(text)).map(segment => segment.segment);
+    }
+    // Fallback: treat each character as a grapheme
+    return Array.from(text);
+  };
+
   const startAnimation = useCallback(() => {
-    const word = words[words.indexOf(currentWord) + 1] || words[0];
-    setCurrentWord(word);
+    const nextIndex = (words.indexOf(currentWord) + 1) % words.length;
+    setCurrentWord(words[nextIndex]);
     setIsAnimating(true);
   }, [currentWord, words]);
 
   useEffect(() => {
-    if (!isAnimating)
-      setTimeout(() => {
+    if (!isAnimating) {
+      const timer = setTimeout(() => {
         startAnimation();
       }, duration);
+      return () => clearTimeout(timer);
+    }
   }, [isAnimating, duration, startAnimation]);
+
+  const graphemes = splitIntoGraphemes(currentWord);
 
   return (
     <AnimatePresence
@@ -36,14 +50,8 @@ export const FlipWords = ({
       }}
     >
       <motion.div
-        initial={{
-          opacity: 0,
-          y: 10,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{
           duration: 0.4,
           ease: "easeInOut",
@@ -60,26 +68,34 @@ export const FlipWords = ({
           position: "absolute",
         }}
         className={cn(
-          "z-10 inline-block relative text-left text-white dark:text-neutral-100 ",
+          "z-10 inline-block relative text-left text-white dark:text-neutral-100",
           className
         )}
         key={currentWord}
       >
-        {currentWord.split("").map((letter, index) => (
-          <motion.span
-            key={currentWord + index}
-            initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{
-              delay: index * 0.08,
-              duration: 0.4,
-            }}
-            className="inline-block"
-          >
-            {letter}
-          </motion.span>
-        ))}
+        <span className="whitespace-nowrap">
+          {graphemes.map((grapheme, index) => (
+            <motion.span
+              key={currentWord + index}
+              initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{
+                delay: index * 0.08,
+                duration: 0.4,
+              }}
+              className="inline-block"
+              style={{
+                fontFeatureSettings: '"ss01"', // Enable font features for better Hindi rendering
+                fontVariantLigatures: "normal"
+              }}
+            >
+              {grapheme}
+            </motion.span>
+          ))}
+        </span>
       </motion.div>
     </AnimatePresence>
   );
 };
+
+export default FlipWords;
