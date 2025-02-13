@@ -66,7 +66,7 @@ const TechStackGrid = () => {
 
 
             <section id="why_hire_me" className="bg-black py-24">
-                <div className=" mx-auto px-4">
+                <div className=" mx-auto">
 
                     <div className="max-w-3xl mx-auto text-center mb-16">
                         <span className="text-blue-600 font-medium text-sm tracking-wider uppercase">Why Hire Me</span>
@@ -175,7 +175,7 @@ const TechStackGrid = () => {
                     </div>
 
                     <section id="freelance_services" className="bg-black py-20">
-                        <div className=" mx-auto px-4">
+                        <div className=" mx-auto ">
                             <div className="grid md:grid-cols-3 py-10 pb-20 gap-8">
                                 <div className="bg-neutral-800/50 rounded-lg p-6">
                                     <svg className="w-8 h-8 text-blue-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -218,8 +218,6 @@ const TechStackGrid = () => {
                             <p className="text-gray-400">Technologies Mastered</p>
                         </div>
                     </div>
-
-                    <TestimonialsSection />
 
                     <div className="text-center">
                         <h3 className="text-2xl font-semibold text-white mb-4">Ready to Work Together?</h3>

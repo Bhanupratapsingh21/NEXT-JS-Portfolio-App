@@ -36,7 +36,9 @@ function Aboutme() {
                         <TabsContent value="Education">
                             <Education />
                         </TabsContent>
+                       
                     </Tabs>
+                    <TestimonialsSection/>
                 </div>
             </div>
         </>
