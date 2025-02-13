@@ -63,12 +63,7 @@ function Connectwithme() {
         }
 
         try {
-            const response = await axios.post("https://api.web3forms.com/submit", formData, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                },
-            });
+            const response = await axios.post("https://api.web3forms.com/submit", formData);
 
             if (response.data.success) {
                 setIsSubmitted(true);
