@@ -4,7 +4,7 @@ import Image from 'next/image';
 const reviews = [
     {
         id: 1,
-        name: "Yash Ranjan Shukla",
+        name: "Yash Rajan Shukla",
         role: "CTO Newral CSX Para-Talks",
         text: "Unexceptionally good in his work, his consistency and dedication can move mountains. The best person I worked with not only in tech and also about taking responsibility of work and completing it on time",
         rating: 5,
