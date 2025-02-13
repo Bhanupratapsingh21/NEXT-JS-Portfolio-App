@@ -47,8 +47,8 @@ export default function RootLayout({
   return (
     <html className="dark" lang="en">
       <head>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="https://res.cloudinary.com/dhvkjanwa/image/upload/v1739371613/juedxiinyxgg30ibyadz.avif" type="image/x-icon" />
-        <link rel="icon" href="https://res.cloudinary.com/dhvkjanwa/image/upload/v1739371613/juedxiinyxgg30ibyadz.avif" type="image/x-icon" />
         <link rel="preload" href="https://fonts.gstatic.com" as="font" type="font/woff2" />
       </head>
       <body className={`${notoSans.className} ${inter.className} bg-black text-white`}>
