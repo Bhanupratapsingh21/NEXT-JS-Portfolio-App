@@ -66,14 +66,14 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ name, role, src, text
                     {
                         src ? (
                             <Image
-                        src={src}
-                        height={100}
-                        width={100}
-                        alt={"Loading"}
-                        className='rounded-full'
-                    />
+                                src={src}
+                                height={100}
+                                width={100}
+                                alt={"Loading"}
+                                className='rounded-full'
+                            />
                         ) : (
-                            <h2>{name.slice(0,2)}</h2>
+                            <h2>{name.slice(0, 2)}</h2>
                         )
                     }
                 </div>
@@ -104,9 +104,9 @@ const TestimonialsSection = () => {
     ));
     return (
         <section className="bg-black py-16">
-            <div className="mx-auto px-4">
+            <div className="">
                 {/* Section Header */}
-                <div className="max-w-3xl mx-auto text-center mb-16">
+                <div className=" text-center mb-16">
                     <span className="text-blue-600 font-medium text-sm tracking-wider uppercase">
                         Reviews of My Work
                     </span>

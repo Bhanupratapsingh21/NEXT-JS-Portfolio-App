@@ -90,33 +90,15 @@ const ProjectCard = ({
                         }
                     </Link>
 
-                    < div className="flex gap-4" >
-                        {repoLink && (
-                            <Link
-                                href={repoLink}
-                                target="_blank"
-                                className="text-blue-600 hover:text-blue-500 flex items-center gap-2"
-                            >
-                                <span>Live Demo </span>
-                                < svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                                    />
-                                </svg>
-                            </Link>
-                        )}
-
+                    < div className="flex bottom-0 justify-center items-center gap-4" >
                         {
                             liveLink && (
                                 <Link
                                     href={liveLink}
                                     target="_blank"
-                                    className="text-blue-600 hover:text-blue-500 flex items-center gap-2"
+                                    className="text-blue-600 bg-blue-600/10 px-auto py-3 rounded-3xl items-center w-full hover:text-blue-500 flex justify-center gap-2"
                                 >
-                                    <span>Code </span>
+                                    <span>Live Link </span>
                                     < svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" >
                                         <path
                                             strokeLinecap="round"
@@ -128,6 +110,25 @@ const ProjectCard = ({
                                 </Link>
                             )
                         }
+                        {repoLink && (
+                            <Link
+                                href={repoLink}
+                                target="_blank"
+                                className="text-blue-600 bg-blue-600/10 px-auto py-3 rounded-3xl items-center w-full hover:text-blue-500 flex justify-center gap-2"
+                            >
+                                <span>Repo Link</span>
+                                < svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                    />
+                                </svg>
+                            </Link>
+                        )}
+
+
                     </div>
                 </div>
             </div>

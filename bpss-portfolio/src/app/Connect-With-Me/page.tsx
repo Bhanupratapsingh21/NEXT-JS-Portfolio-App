@@ -92,16 +92,16 @@ function Connectwithme() {
     };
     return (
         <>
-            <section id="social_feed" className="bg-black py-24">
-                <div className="container mx-auto px-4">
+            <section id="social_feed" className="bg-black ">
+                <div className="max-w-7xl mx-auto py-28  sm:px-10 lg:px-16">
 
-                    <div className="max-w-3xl mx-auto text-center mb-16">
+                    <div className="max-w-3xl mx-auto px-4 text-center mb-16">
                         <span className="text-white font-medium text-sm tracking-wider uppercase">Get In Touch</span>
                         <h2 className="bg-clip-text text-4xl text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20">Let's Build Something Amazing</h2>
                     </div>
 
 
-                    <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                    <div className="grid lg:grid-cols-2 gap-12 px-4  max-w-6xl mx-auto">
 
                         <div className="space-y-8">
 
@@ -118,7 +118,7 @@ function Connectwithme() {
                                         </div>
                                         <span>bhanupss137@gmail.com</span>
                                     </a>
-                                    <div 
+                                    <div
                                         className="flex items-center gap-4 text-gray-400 hover:text-blue-600 transition-colors">
                                         <div className="size-12 flex items-center justify-center bg-blue-600/10 rounded-lg">
                                             <svg className="size-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -219,11 +219,11 @@ function Connectwithme() {
                             </form>
                             {isSubmitted && <p>Thank you! Your message has been sent.</p>}
                             {error && <p>{error}</p>}
-                            
+
                         </div>
                     </div>
                 </div>
-                
+
 
             </section>
             <AlertDialog open={openDialog} onOpenChange={(isOpen) => {
