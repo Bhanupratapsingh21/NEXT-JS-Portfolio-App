@@ -111,10 +111,10 @@ const TestimonialsSection = () => {
                         Reviews of My Work
                     </span>
                     <svg className="w-6 h-6 mx-auto mt-2 text-blue-600" fill="currentColor" viewBox="0 0 24 24"></svg>
-                    <h2 className="mt-3 text-4xl font-bold bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20">
+                    <h2 className="mt-3 h-14 text-4xl font-bold bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20">
                         Hear from My Clients & Collaborators, Managers, and More
                     </h2>
-                    <p className="mt-4 text-gray-400">
+                    <p className="mt-4  text-gray-400">
                         Genuine feedback from those I've worked with, highlighting my expertise, professionalism, and impact.
                     </p>
                 </div>

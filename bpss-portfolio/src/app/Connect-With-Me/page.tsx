@@ -92,7 +92,7 @@ function Connectwithme() {
 
                     <div className="max-w-3xl mx-auto px-4 text-center mb-16">
                         <span className="text-white font-medium text-sm tracking-wider uppercase">Get In Touch</span>
-                        <h2 className="bg-clip-text text-4xl text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20">Let's Build Something Amazing</h2>
+                        <h2 className="bg-clip-text h-14 text-4xl text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20">Let's Build Something Amazing</h2>
                     </div>
 
 
