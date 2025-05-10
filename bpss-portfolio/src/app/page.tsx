@@ -4,34 +4,54 @@ import dynamic from "next/dynamic";
 import { Spotlight } from "@/components/ui/spotlight";
 import { StarsBackground } from "@/components/ui/stars-background";
 import Link from "next/link";
+import { LetterFx } from "@/once-ui/components/LetterFx";
+import Particles from "@/components/particles";
+import { Contact } from "lucide-react";
+import Image from "next/image";
+const navigation = [
+  { name: "Projects", href: "/projects" },
+  { name: "My Ai", href: "/My-Ai" },
+  { name: "About-Me", href: "/About-Me" },
+  { name: "Contact", href: "/Connect-With-Me" }
+];
 
 // Dynamically import FlipWords to disable SSR
 const FlipWordsNoSSR = dynamic(() => import("@/components/ui/flip-words"), { ssr: false });
 
 export default function SpotlightPreview() {
-  const words = ["नमस्कार", "Hello", "Konnichiwa", "Hola Amigo", "Bonjour"];
+  const words = ["Hi", "नमस्कार", "Konnichiwa", "Hola Amigo", "Bonjour"];
 
   return (
-    <div className="h-screen  w-full rounded-md flex md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
-      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
-      <div className="p-4 max-w-7xl gap-4  flex justify-center flex-col items-center mx-auto relative z-10 w-full pt-20 md:pt-0">
-        <div className="text-neutral-500 cursor-pointer gap-4 max-w-lg mx-auto my-2 text-sm text-center relative z-10 flex justify-center items-center">
-          <Link href={"/projects"} >Projects</Link>
-          <Link href={"/My-Ai"} >My-AI</Link>
-          <Link href={"/About-Me"} >About-Me</Link>
-          <Link href={"/Connect-With-Me"} >Contact</Link>
+    <div className="flex flex-col items-center justify-center w-screen h-screen overflow-hidden bg-gradient-to-tl from-black via-zinc-600/20 to-black">
+      <nav className="my-16 animate-fade-in">
+        <ul className="flex items-center justify-center gap-4">
+          {navigation.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-sm duration-500 text-zinc-500 hover:text-zinc-300"
+            >
+              {item.name}
+            </Link>
+          ))}
+        </ul>
+      </nav>
+      <div className="hidden w-screen h-px animate-glow md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
+      <Particles
+        className="absolute inset-0 -z-10 animate-fade-in"
+        quantity={200}
+      />
+      <h1 className="py-3.5 px-0.5 z-10 text-4xl text-center text-transparent duration-1000 bg-white cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-6xl whitespace-nowrap bg-clip-text ">
+        <FlipWordsNoSSR words={words} />
+        , I'm <br /> Bhanu Pratap Singh
+      </h1>
 
-        </div>
-        <div className="text-4xl cursor-default h-40 md:text-7xl font-black text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
-          <h1><FlipWordsNoSSR words={words} />
-            , I'm <br /> Bhanu Pratap Singh
-          </h1>
-        </div>
-        <p className="mt-3 cursor-default font-normal text-base text-neutral-300 max-w-lg text-center mx-auto">
-          Blending commercial acumen with cutting-edge technical skills. Passionate about creating impactful digital solutions with modern Tech stack and technologies.
-        </p>
+      <div className="hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
+      <div className="my-16 text-center animate-fade-in">
+        <h2 className="text-sm text-zinc-500 ">
+            Blending commercial acumen with cutting-edge technical skills. Passionate about <br />creating impactful digital solutions with modern Tech stack and technologies.
+        </h2>
       </div>
-      <StarsBackground starDensity={0.00025} className="z-5" />
     </div>
   );
 }

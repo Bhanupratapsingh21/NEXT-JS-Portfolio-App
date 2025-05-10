@@ -49,11 +49,22 @@
   border-radius: 50px;
   position: sticky;
 }
-.cardofchat{
- 
+
+.cardofchat {
+
   inset: 0;
-  background: radial-gradient(circle at 100% 107%, #ff89cc 0%, #9cb8ec 30%, #00ffee 60%, #62c2fe 100%);
+  background: radial-gradient(circle at 80% 120%,
+      #001f3f 0%,
+      /* navy blue */
+      #002d5b 30%,
+      /* deep sea blue */
+      #001a33 60%,
+      /* nearly black marine */
+      #000000 100%
+      /* true black */
+    )
 }
+
 .tab {
   display: flex;
   align-items: center;
@@ -161,6 +172,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -193,8 +205,16 @@
   * {
     @apply border-border;
   }
+
   body {
-    
+
     @apply bg-background text-foreground;
+  }
+}
+
+
+@layer base {
+  .text-edge-outline {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
   }
 }
