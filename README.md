@@ -24,6 +24,6 @@ This is my personal portfolio website showcasing my journey, skills, and project
 
 ## Live Preview
 
-- **[Live Demo Link](https://bhanu-pratap-portfolio.vercel.app/)**
+- **[Live Demo Link](https://bpss.tech/)**
 
 ---
