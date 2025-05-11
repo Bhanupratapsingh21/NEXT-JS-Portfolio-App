@@ -103,7 +103,7 @@ const TestimonialsSection = () => {
         />
     ));
     return (
-        <section className="bg-black py-16">
+        <section className="bg-black md:px-40">
             <div className="">
                 {/* Section Header */}
                 <div className=" text-center mb-16">

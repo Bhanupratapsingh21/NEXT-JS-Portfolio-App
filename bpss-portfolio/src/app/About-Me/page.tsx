@@ -125,6 +125,7 @@ function Aboutme() {
                 </div>
             </div>
             <Education />
+            <TestimonialsSection/>
         </div>
     );
 };
