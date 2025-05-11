@@ -3,6 +3,7 @@ import Image from "next/image";
 
 const data = [
     {
+        company: "Newral Softwares Inc.",
         title: "Dec 2024 - Present",
         content: (
             <div>
@@ -52,11 +53,12 @@ const data = [
         ),
     },
     {
+        company: "Eventory",
         title: "Aug 2024",
         content: (
             <div>
                 <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-                    I’m currently interning at Eventory, where I build both the vendor and customer platforms, from integrating payments for vendor subscriptions to creating features for customers to find, browse, and book event managers, venues, and other services.
+                    At Eventory i Worked for 3 Months, where I build both the vendor and customer platforms, from integrating payments for vendor subscriptions to creating features for customers to find, browse, and book event managers, venues, and other services.
                 </p>
                 <div className="grid grid-cols-2 gap-4">
 
@@ -93,6 +95,7 @@ const data = [
         ),
     },
     {
+        company: "Studying",
         title: "June-July 2024",
         content: (
             <div>
@@ -151,6 +154,7 @@ const data = [
         ),
     },
     {
+        company: "Studying",
         title: "Start 2024",
         content: (
             <div>
@@ -192,6 +196,7 @@ const data = [
         ),
     },
     {
+        company: "Studying",
         title: "Sep 2023",
         content: (
             <div>
@@ -219,6 +224,7 @@ const data = [
         ),
     },
     {
+        company: "Just Doing Some Shit a 16 Year Old Kid Like To Do",
         title: "June-July 2023",
         content: (
             <div>

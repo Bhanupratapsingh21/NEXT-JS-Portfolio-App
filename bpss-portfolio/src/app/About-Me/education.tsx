@@ -6,41 +6,7 @@ import TestimonialsSection from '@/components/Reviews';
 const TechStackGrid = () => {
 
     return (
-        <div className="mx-auto pt-14 px-4">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-                <span className="text-blue-600 font-medium text-sm tracking-wider uppercase">Tech Stack</span>
-                <h2 className="mt-3 text-4xl font-bold bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20 ">What I know || My Technology Arsenal</h2>
-                <p className="mt-4 text-gray-400">
-                    A comprehensive suite of modern technologies I use to build powerful solutions
-                </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {Object.entries(categories).map(([category, items]) => (
-                    <div
-                        key={category}
-                        className="group bg-neutral-900/50 backdrop-blur border border-neutral-800 rounded-xl p-8 hover:border-blue-600/50 transition-all duration-300"
-                    >
-                        <div className="flex items-center gap-4 mb-6">
-                            <div className="p-3 bg-blue-600/10 rounded-lg">
-                                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-                                </svg>
-                            </div>
-                            <h3 className="text-xl font-semibold text-white">{category}</h3>
-                        </div>
-                        <ul className="space-y-3">
-                            {items.map((tech) => (
-                                <li key={tech} className="flex items-center text-gray-400">
-                                    <span className="w-2 h-2 bg-blue-600 rounded-full mr-2"></span>
-                                    {tech}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                ))}
-            </div>
-
+        <div className="mx-auto max-w-6xl pt-14 px-4">
             <div className="mt-20">
                 <h3 className="text-xl font-semibold text-white text-center mb-8">Key Skills Gained</h3>
                 <div className="flex flex-wrap justify-center gap-4">

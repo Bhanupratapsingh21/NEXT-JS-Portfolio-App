@@ -27,6 +27,12 @@ const config: Config = {
 				title: "title 3s ease-out forwards",
 				"fade-left": "fade-left 3s ease-in-out forwards",
 				"fade-right": "fade-right 3s ease-in-out forwards",
+				first: 'moveVertical 30s ease infinite',
+				second: 'moveInCircle 20s reverse infinite',
+				third: 'moveInCircle 40s linear infinite',
+				fourth: 'moveHorizontal 40s ease infinite',
+				fifth: 'moveInCircle 20s ease infinite',
+				scroll: 'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite'
 			},
 			keyframes: {
 				"fade-in": {
@@ -97,16 +103,6 @@ const config: Config = {
 						transform: "translate(-50%,-40%) scale(1)",
 					},
 				},
-			},
-			animation2: {
-				first: 'moveVertical 30s ease infinite',
-				second: 'moveInCircle 20s reverse infinite',
-				third: 'moveInCircle 40s linear infinite',
-				fourth: 'moveHorizontal 40s ease infinite',
-				fifth: 'moveInCircle 20s ease infinite',
-				scroll: 'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite'
-			},
-			keyframes2: {
 				scroll: {
 					to: {
 						transform: 'translate(calc(-50% - 0.5rem))'
@@ -218,12 +214,6 @@ const config: Config = {
 			fontFamily: {
 				sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
 				display: ["var(--font-calsans)"],
-			},
-			animation3: {
-
-			},
-			keyframes3: {
-
 			},
 		}
 	},
