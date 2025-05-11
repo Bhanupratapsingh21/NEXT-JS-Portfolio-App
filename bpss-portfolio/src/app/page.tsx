@@ -1,13 +1,8 @@
 "use client"
-import React, { useEffect, useState } from "react";
+import React from "react";
 import dynamic from "next/dynamic";
-import { Spotlight } from "@/components/ui/spotlight";
-import { StarsBackground } from "@/components/ui/stars-background";
 import Link from "next/link";
-import { LetterFx } from "@/once-ui/components/LetterFx";
 import Particles from "@/components/particles";
-import { Contact } from "lucide-react";
-import Image from "next/image";
 const navigation = [
   { name: "Projects", href: "/projects" },
   { name: "My Ai", href: "/My-Ai" },
@@ -19,8 +14,7 @@ const navigation = [
 const FlipWordsNoSSR = dynamic(() => import("@/components/ui/flip-words"), { ssr: false });
 
 export default function SpotlightPreview() {
-  const words = ["Hi", "नमस्कार", "Konnichiwa", "Hola Amigo", "Bonjour"];
-
+  const words = ["नमस्कार", "Konnichiwa", "Hola Amigo", "Bonjour"];
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen overflow-hidden bg-gradient-to-tl from-black via-zinc-600/20 to-black">
       <nav className="my-16 animate-fade-in">
@@ -45,7 +39,6 @@ export default function SpotlightPreview() {
         <FlipWordsNoSSR words={words} />
         , I'm <br /> Bhanu Pratap Singh
       </h1>
-
       <div className="hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
       <div className="my-16 text-center animate-fade-in">
         <h2 className="text-sm text-zinc-500 ">
@@ -54,4 +47,4 @@ export default function SpotlightPreview() {
       </div>
     </div>
   );
-}
+};
